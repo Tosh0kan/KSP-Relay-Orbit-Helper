@@ -21,7 +21,7 @@ class Moons(Planets):
         self.periap = periap
         
 
-class Satellites: #The relay and it's constituting satellites
+class Satellites: #The relay and its constituting satellites
     def __init__(self, name: str):
         self.name = name
         self.height = height
