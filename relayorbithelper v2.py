@@ -46,7 +46,9 @@ class Dispenser:
     def get_orb_period(self, frac):
         self.orb_period = Satellites.orb_period * frac
 
-    
+class Math:
+    pass
+
 def get_data():
     planet_input = input("Planet's or moon's name? ").casefold().title()
     height = float(input("Desired height of the relay? "))
