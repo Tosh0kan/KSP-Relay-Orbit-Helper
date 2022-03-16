@@ -1,0 +1,137 @@
+{
+    "Planets": {
+        "Moho": {
+            "name": "Moho",
+            "radius": 250000,
+            "sgp": 1.6860938e11,
+            "soi": 9646663,
+            "atmo height": "-inf"
+        },
+        "Eve": {
+            "name": "Eve",
+            "radius": 700000,
+            "sgp": 8.1717302e12,
+            "soi": 85109365,
+            "atmo height": 90000
+        },
+        "Kerbin": {
+            "name": "Kerbin",
+            "radius": 600000,
+            "sgp": 3.5316000e12,
+            "soi": 84159286,
+            "atmo height": 70000
+        },
+        "Duna": {
+            "name": "Duna",
+            "radius": 320000,
+            "sgp": 3.0136321e11,
+            "soi": 47921949,
+            "atmo height": 50000
+        },
+        "Dres": {
+            "name": "Dres",
+            "radius": 138000,
+            "sgp": 2.1484489e10,
+            "soi": 32832840,
+            "atmo height": "-inf"
+        },
+        "Jool": {
+            "name": "Jool",
+            "radius": 6000000,
+            "sgp": 2.8252800e14,
+            "soi": 2.4559852e9,
+            "atmo height": 200000
+        },
+        "Eeloo": {
+            "name": "Eeloo",
+            "radius": 210000,
+            "sgp": 7.4410815e10,
+            "soi": 1.1908294e8,
+            "atmo height": "-inf"
+        }
+    },
+
+    "Moons": {
+        "Gilly": {
+            "name": "Gilly",
+            "radius": 13000,
+            "sgp": 8289449.8,
+            "soi": 126123.27,
+            "atmo height": "-inf",
+            "apoapsis": 48825000,
+            "periapsis": 14175000
+        },
+        "Mun": {
+            "name": "Mun",
+            "radius": 200000,
+            "sgp": 6.5138398e10,
+            "soi": 2429557.1,
+            "atmo height": "-inf",
+            "apoapsis": 12000000,
+            "periapsis": 12000000
+        },
+        "Minmus": {
+            "name": "Minmus",
+            "radius": 60000,
+            "sgp": 1.7658000e9,
+            "soi": 2247428.4,
+            "atmo height": "-inf",
+            "apoapsis": 47000000,
+            "periapsis": 47000000
+        },
+        "Ike": {
+            "name": "Ike",
+            "radius": 130000,
+            "sgp": 1.8568369e10,
+            "soi": 1049598.9,
+            "atmo height": "-inf",
+            "apoapsis": 3296000,
+            "periapsis": 3104000
+        },
+        "Laythe": {
+            "name": "Laythe",
+            "radius": 500000,
+            "sgp": 1.9620000e12,
+            "soi": 3723645.8,
+            "atmo height": 50000,
+            "apoapsis": 27184000,
+            "periapsis": 27184000
+        },
+        "Vall": {
+            "name": "Vall",
+            "radius":300000,
+            "sgp": 2.0748150e11,
+            "soi": 2406401.4,
+            "atmo height": "-inf",
+            "apoapsis": 43152000,
+            "periapsis": 43152000
+        },
+        "Tylo": {
+            "name": "Tylo",
+            "radius": 600000,
+            "sgp": 2.8252800e12,
+            "soi": 10856518,
+            "atmo height": "-inf",
+            "apoapsis": 68500000,
+            "periapsis": 68500000
+        },
+        "Bop": {
+            "name": "Bop",
+            "radius": 65000,
+            "sgp": 2.4868349e9,
+            "soi": 1221060.9,
+            "atmo height": "-inf",
+            "apoapsis": 158697500,
+            "periapsis": 98302500
+        },
+        "Pol": {
+            "name": "Pol",
+            "radius": 44000,
+            "sgp": 7.2170208e8,
+            "soi": 1042138.9,
+            "atmo height": "-inf",
+            "apoapsis": 210624207,
+            "periapsis": 149155794
+        }
+    }
+}
