@@ -1,12 +1,14 @@
 import json
+from math import pi
 
+#==< Classes Definitions >==#
 class Planets(object):
     def __init__(self, name, radius, sgp, soi, atmo_height, moons=()):
         self.name = name
         self.radius = radius
         self.sgp = sgp
         self.soi = soi
-        self.atmo_height = atmo_height
+        self.atmo_height = float(atmo_height)
         self.moons = moons
     
     def __repr__(self):
@@ -14,36 +16,99 @@ class Planets(object):
 
 class Moons(Planets):
     def __init__(self, name, radius, sgp, soi, atmo_height, apoapsis, periapsis):
-        super().__init__(name, radius, sgp, soi, atmo_height)
+        super().__init__(name, radius, sgp, soi, float(atmo_height))
         self.apoapsis = apoapsis
         self.periapsis = periapsis
 
     def __repr__(self):
         return  f"{self.name}, {self.radius} m, {self.sgp}, {self.soi}, {self.atmo_height}, {self.apoapsis}, {self.periapsis}"
 
-with open('Planets.json', 'r') as p:
+class Eqn(object):
+    @staticmethod 
+    def get_rly_semimjr_axis(): 
+        rly_semimjr_axis = target.radius + rly_height
+        return rly_semimjr_axis
+    
+    @staticmethod
+    def get_rly_period():
+        rly_period = 2 * pi * (((rly_semimjr_axis ** 3)/target.sgp) ** (1/2))
+        return round(rly_period,4)
+    
+    @staticmethod
+    def get_insert_data():
+        insert_period = round((rly_period * (4/3)), 4)
+        insert_semimjr_axis = round(((target.sgp * (insert_period **2))/(4 * (pi ** 2))) ** (1/3),4)
+        r_max = (2 * insert_semimjr_axis) - rly_semimjr_axis
+        alt = round(r_max - target.radius,2)
+
+        if alt < target.soi:
+            insert_period = round((rly_period * (2/3)), 4)
+            insert_semimjr_axis = round(((target.sgp * (insert_period **2))/(4 * (pi ** 2))) ** (1/3),4)
+            r_min = (2 * insert_semimjr_axis) - rly_semimjr_axis
+            alt = round(r_min - target.radius,2)
+        
+        return alt
+
+def get_inputs():
+    bad_planet = True
+    while bad_planet == True:
+        input_name = input("Planet or moon name? ").capitalize()
+        for element in planets + moons:
+            if element.name == input_name:
+                target = element
+                bad_planet = False
+                break
+
+        if bad_planet == True:
+            print("The name typed doesn't match any of the known bodies. Please, try again.\n")
+    
+    bad_height = True
+    while bad_height == True:
+        input_height = float(input("What's the desired height, in meters, for the relay above ground? "))
+        if input_height <= target.radius:
+            print(f"""The desired height would put your relay orbit below the minimum orbit around {target.name}, leading to signal occlusion. Please, pick a new height (min. {target.radius + 10000}m).\n""")
+
+        elif (input_height + target.radius) >= target.soi:
+            print(f"""The desired height would put your relay orbit outside of {target.name}'s sphere of influence. Please, pick a new height (max. {target.soi - 10000}m).\n""")
+
+        elif input_height <= target.atmo_height:
+            print(f"""The desired height would put your relay orbit inside the atmosphere limit. Please, pick a new height. (min. {target.atmo_height + 10000}m).\n""")
+
+        else:
+            bad_height = False
+        
+    return target, input_height
+
+with open('Relay Orbit Helper/Planets.json', 'r') as p: #TODO Alter the path to be just the file name 
     planets = json.load(p)
 
-with open('Moons.json', 'r') as m:
+with open('Relay Orbit Helper/Moons.json', 'r') as m: #TODO Alter the path to be just the file name 
     moons = json.load(m)
 
 # Planet Objects
-moho = Planets(**planets["Planets"]["Moho"])
-eve = Planets(**planets["Planets"]["Eve"])
-kerbin = Planets(**planets["Planets"]["Kerbin"])
-duna = Planets(**planets["Planets"]["Duna"])
-dres = Planets(**planets["Planets"]["Dres"])
-jool = Planets(**planets["Planets"]["Jool"])
+planets = [
+    Planets(**planets["Planets"]["Moho"]),
+    Planets(**planets["Planets"]["Eve"]),
+    Planets(**planets["Planets"]["Kerbin"]),
+    Planets(**planets["Planets"]["Duna"]),
+    Planets(**planets["Planets"]["Dres"]),
+    Planets(**planets["Planets"]["Jool"])
+]
 
 #Moon Objects
-gilly = Moons(**moons["Moons"]["Gilly"])
-mun = Moons(**moons["Moons"]["Mun"])
-minmus = Moons(**moons["Moons"]["Minmus"])
-ike = Moons(**moons["Moons"]["Ike"])
-laythe = Moons(**moons["Moons"]["Laythe"])
-vall = Moons(**moons["Moons"]["Vall"])
-tylo = Moons(**moons["Moons"]["Tylo"])
-bop = Moons(**moons["Moons"]["Bop"])
-pol = Moons(**moons["Moons"]["Pol"])
+moons = [
+    Moons(**moons["Moons"]["Gilly"]),
+    Moons(**moons["Moons"]["Mun"]),
+    Moons(**moons["Moons"]["Minmus"]),
+    Moons(**moons["Moons"]["Ike"]),
+    Moons(**moons["Moons"]["Laythe"]),
+    Moons(**moons["Moons"]["Vall"]),
+    Moons(**moons["Moons"]["Tylo"]),
+    Moons(**moons["Moons"]["Bop"]),
+    Moons(**moons["Moons"]["Pol"])
+]
 
-print()
+target, rly_height = get_inputs()
+rly_semimjr_axis = Eqn.get_rly_semimjr_axis()
+rly_period = Eqn.get_rly_period()
+alt = Eqn.get_insert_data()
