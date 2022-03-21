@@ -58,8 +58,8 @@
             "sgp": 3.0136321e11,
             "soi": 47921949,
             "atmo_height": 50000,
-            "moons": {
-                "Ike": {
+            "moons": [
+                {
                     "name": "Ike",
                     "radius": 130000,
                     "sgp": 1.8568369e10,
@@ -68,7 +68,7 @@
                     "apoapsis": 3296000,
                     "periapsis": 3104000
                 }
-            }
+            ]
         },
         "Dres": {
             "name": "Dres",
