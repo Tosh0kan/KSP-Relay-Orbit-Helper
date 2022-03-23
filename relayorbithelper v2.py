@@ -1,3 +1,4 @@
+import sys; import os
 import json
 from math import pi
 
@@ -41,7 +42,7 @@ class Eqn(object):
         r_max = (2 * insert_semimjr_axis) - rly_semimjr_axis
         alt = round(r_max - target.radius,2)
 
-        if alt < target.soi:
+        if alt >= target.soi:
             insert_period = round((rly_period * (2/3)), 4)
             insert_semimjr_axis = round(((target.sgp * (insert_period **2))/(4 * (pi ** 2))) ** (1/3),4)
             r_min = (2 * insert_semimjr_axis) - rly_semimjr_axis
@@ -49,6 +50,7 @@ class Eqn(object):
         
         return alt
 
+#==< Functions Definitions >==#
 def get_inputs():
     bad_planet = True
     while bad_planet == True:
@@ -68,8 +70,8 @@ def get_inputs():
         if input_height <= target.radius:
             print(f"""The desired height would put your relay orbit below the minimum orbit around {target.name}, leading to signal occlusion. Please, pick a new height (min. {target.radius + 10000}m).\n""")
 
-        elif (input_height + target.radius) >= target.soi:
-            print(f"""The desired height would put your relay orbit outside of {target.name}'s sphere of influence. Please, pick a new height (max. {target.soi - 10000}m).\n""")
+        elif input_height >= (target.soi - target.radius):
+            print(f"""The desired height would put your relay orbit outside of {target.name}'s sphere of influence. Please, pick a new height (max. {(target.soi - target.radius) - 10000}m).\n""")
 
         elif input_height <= target.atmo_height:
             print(f"""The desired height would put your relay orbit inside the atmosphere limit. Please, pick a new height. (min. {target.atmo_height + 10000}m).\n""")
@@ -79,10 +81,17 @@ def get_inputs():
         
     return target, input_height
 
-with open('Relay Orbit Helper/Planets.json', 'r') as p: #TODO Alter the path to be just the file name 
+def resource_path(relative_path):
+    #Credits go to https://stackoverflow.com/a/60953781/10925021
+    #Get absolute path to resource, works for dev and for PyInstaller
+    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, relative_path)
+
+#==< File Openings >==#
+with open(resource_path('Planets.json'), 'r') as p: 
     planets = json.load(p)
 
-with open('Relay Orbit Helper/Moons.json', 'r') as m: #TODO Alter the path to be just the file name 
+with open(resource_path('Moons.json'), 'r') as m: 
     moons = json.load(m)
 
 # Planet Objects
@@ -90,7 +99,7 @@ planets = [
     Planets(**planets["Planets"]["Moho"]),
     Planets(**planets["Planets"]["Eve"]),
     Planets(**planets["Planets"]["Kerbin"]),
-    Planets(**planets["Planets"]["Duna"]),
+    Planets(**planets["Planets"]["Duna"]),  
     Planets(**planets["Planets"]["Dres"]),
     Planets(**planets["Planets"]["Jool"])
 ]
@@ -108,7 +117,16 @@ moons = [
     Moons(**moons["Moons"]["Pol"])
 ]
 
-target, rly_height = get_inputs()
-rly_semimjr_axis = Eqn.get_rly_semimjr_axis()
-rly_period = Eqn.get_rly_period()
-alt = Eqn.get_insert_data()
+print("\nDisclaimer: This program can only calculate orbits based on a 3 satellite relay network. As such, the resulting values can only be used for such a configuration.") 
+
+while True:
+    target, rly_height = get_inputs()
+    rly_semimjr_axis = Eqn.get_rly_semimjr_axis()
+    rly_period = Eqn.get_rly_period()
+    alt = Eqn.get_insert_data()
+    if alt > rly_height:
+        print(f"""Your inserting craft, aka The Mothership, should've an Apoapsis of {alt} m and a Periapsis of {rly_height} m above ground to ensure optimal satellite dispersion
+        """)
+    if alt < rly_height:
+        print(f"""Your inserting craft, aka The Mothership, should've an Apoapsis of {rly_height} m and a Periapsis of {alt} m above ground to ensure optimal satellite dispersion
+        """)
