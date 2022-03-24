@@ -1,0 +1,4 @@
+**/executable*
+**/output
+**/__pycache__
+**/pyinstaller
