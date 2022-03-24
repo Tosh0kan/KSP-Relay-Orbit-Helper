@@ -1,85 +1,83 @@
 {
-    "Moons":{
-        "Gilly": {
-            "name": "Gilly",
-            "radius": 13000,
-            "sgp": 8289449.8,
-            "soi": 126123.27,
-            "atmo_height": "-inf",
-            "apoapsis": 48825000,
-            "periapsis": 14175000
-        },
-        "Mun": {
-            "name": "Mun",
-            "radius": 200000,
-            "sgp": 6.5138398e10,
-            "soi": 2429557.1,
-            "atmo_height": "-inf",
-            "apoapsis": 12000000,
-            "periapsis": 12000000
-        },
-        "Minmus": {
-            "name": "Minmus",
-            "radius": 60000,
-            "sgp": 1.7658000e9,
-            "soi": 2247428.4,
-            "atmo_height": "-inf",
-            "apoapsis": 47000000,
-            "periapsis": 47000000
-        },
-        "Ike": {
-            "name": "Ike",
-            "radius": 130000,
-            "sgp": 1.8568369e10,
-            "soi": 1049598.9,
-            "atmo_height": "-inf",
-            "apoapsis": 3296000,
-            "periapsis": 3104000
-        },
-        "Laythe": {
-            "name": "Laythe",
-            "radius": 500000,
-            "sgp": 1.9620000e12,
-            "soi": 3723645.8,
-            "atmo_height": 50000,
-            "apoapsis": 27184000,
-            "periapsis": 27184000
-        },
-        "Vall": {
-            "name": "Vall",
-            "radius":300000,
-            "sgp": 2.0748150e11,
-            "soi": 2406401.4,
-            "atmo_height": "-inf",
-            "apoapsis": 43152000,
-            "periapsis": 43152000
-        },
-        "Tylo": {
-            "name": "Tylo",
-            "radius": 600000,
-            "sgp": 2.8252800e12,
-            "soi": 10856518,
-            "atmo_height": "-inf",
-            "apoapsis": 68500000,
-            "periapsis": 68500000
-        },
-        "Bop": {
-            "name": "Bop",
-            "radius": 65000,
-            "sgp": 2.4868349e9,
-            "soi": 1221060.9,
-            "atmo_height": "-inf",
-            "apoapsis": 158697500,
-            "periapsis": 98302500
-        },
-        "Pol": {
-            "name": "Pol",
-            "radius": 44000,
-            "sgp": 7.2170208e8,
-            "soi": 1042138.9,
-            "atmo_height": "-inf",
-            "apoapsis": 210624207,
-            "periapsis": 149155794
-        }
-    }
+    "Gilly": {
+        "name": "Gilly",
+        "radius": 13000,
+        "sgp": 8289449.8,
+        "soi": 126123.27,
+        "atmo_height": "-inf",
+        "apoapsis": 48825000,
+        "periapsis": 14175000
+    },
+    "Mun": {
+        "name": "Mun",
+        "radius": 200000,
+        "sgp": 6.5138398e10,
+        "soi": 2429557.1,
+        "atmo_height": "-inf",
+        "apoapsis": 12000000,
+        "periapsis": 12000000
+    },
+    "Minmus": {
+        "name": "Minmus",
+        "radius": 60000,
+        "sgp": 1.7658000e9,
+        "soi": 2247428.4,
+        "atmo_height": "-inf",
+        "apoapsis": 47000000,
+        "periapsis": 47000000
+    },
+    "Ike": {
+        "name": "Ike",
+        "radius": 130000,
+        "sgp": 1.8568369e10,
+        "soi": 1049598.9,
+        "atmo_height": "-inf",
+        "apoapsis": 3296000,
+        "periapsis": 3104000
+    },
+    "Laythe": {
+        "name": "Laythe",
+        "radius": 500000,
+        "sgp": 1.9620000e12,
+        "soi": 3723645.8,
+        "atmo_height": 50000,
+        "apoapsis": 27184000,
+        "periapsis": 27184000
+    },
+    "Vall": {
+        "name": "Vall",
+        "radius":300000,
+        "sgp": 2.0748150e11,
+        "soi": 2406401.4,
+        "atmo_height": "-inf",
+        "apoapsis": 43152000,
+        "periapsis": 43152000
+    },
+    "Tylo": {
+        "name": "Tylo",
+        "radius": 600000,
+        "sgp": 2.8252800e12,
+        "soi": 10856518,
+        "atmo_height": "-inf",
+        "apoapsis": 68500000,
+        "periapsis": 68500000
+    },
+    "Bop": {
+        "name": "Bop",
+        "radius": 65000,
+        "sgp": 2.4868349e9,
+        "soi": 1221060.9,
+        "atmo_height": "-inf",
+        "apoapsis": 158697500,
+        "periapsis": 98302500
+    },
+    "Pol": {
+        "name": "Pol",
+        "radius": 44000,
+        "sgp": 7.2170208e8,
+        "soi": 1042138.9,
+        "atmo_height": "-inf",
+        "apoapsis": 210624207,
+        "periapsis": 149155794
+    }    
 }

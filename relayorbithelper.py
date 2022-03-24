@@ -55,7 +55,7 @@ def get_inputs():
     bad_planet = True
     while bad_planet == True:
         input_name = input("Planet or moon name? ").capitalize()
-        for element in planets + moons:
+        for element in planets_objects + moons_objects:
             if element.name == input_name:
                 target = element
                 bad_planet = False
@@ -82,40 +82,32 @@ def get_inputs():
     return target, input_height
 
 def resource_path(relative_path):
+    '''Get absolute path to resource, works for dev and for PyInstaller'''
     #Credits go to https://stackoverflow.com/a/60953781/10925021
-    #Get absolute path to resource, works for dev and for PyInstaller
     base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
     return os.path.join(base_path, relative_path)
 
 #==< File Openings >==#
 with open(resource_path('Planets.json'), 'r') as p: 
-    planets = json.load(p)
+    planets_f = json.load(p)
 
 with open(resource_path('Moons.json'), 'r') as m: 
-    moons = json.load(m)
+    moons_f = json.load(m)
 
-# Planet Objects
-planets = [
-    Planets(**planets["Planets"]["Moho"]),
-    Planets(**planets["Planets"]["Eve"]),
-    Planets(**planets["Planets"]["Kerbin"]),
-    Planets(**planets["Planets"]["Duna"]),  
-    Planets(**planets["Planets"]["Dres"]),
-    Planets(**planets["Planets"]["Jool"])
-]
+# Planet Objects #TODO Make a loop that automatically populates stuff
+planets_objects = []
+for planet in planets_f.values():
+  # moon is now the inner dicts, example below
+  new_planet = Planets(**planet)
+  planets_objects.append(new_planet)
 
-#Moon Objects
-moons = [
-    Moons(**moons["Moons"]["Gilly"]),
-    Moons(**moons["Moons"]["Mun"]),
-    Moons(**moons["Moons"]["Minmus"]),
-    Moons(**moons["Moons"]["Ike"]),
-    Moons(**moons["Moons"]["Laythe"]),
-    Moons(**moons["Moons"]["Vall"]),
-    Moons(**moons["Moons"]["Tylo"]),
-    Moons(**moons["Moons"]["Bop"]),
-    Moons(**moons["Moons"]["Pol"])
-]
+#Moon Objects #TODO Make a loop that automatically populates stuff
+moons_objects = []
+for moon in moons_f.values():
+  # moon is now the inner dicts, example below
+  new_moon = Moons(**moon)
+  moons_objects.append(new_moon)
+
 
 print("\nDisclaimer: This program can only calculate orbits based on a 3 satellite relay network. As such, the resulting values can only be used for such a configuration.") 
 
@@ -124,7 +116,7 @@ while True:
     rly_semimjr_axis = Eqn.get_rly_semimjr_axis()
     rly_period = Eqn.get_rly_period()
     alt = Eqn.get_insert_data()
-    if alt > rly_height:
+    if alt > rly_height:  
         print(f"""Your inserting craft, aka The Mothership, should've an Apoapsis of {alt} m and a Periapsis of {rly_height} m above ground to ensure optimal satellite dispersion
         """)
     if alt < rly_height:
