@@ -60,7 +60,7 @@ class Eqn(object):
 
 def get_inputs():
     bad_planet = True
-    while bad_planet == True:
+    while bad_planet is True:
         input_name = input("Planet or moon name? ").capitalize()
         for element in planets_objects + moons_objects:
             if element.name == input_name:
@@ -68,11 +68,11 @@ def get_inputs():
                 bad_planet = False
                 break
 
-        if bad_planet == True:
+        if bad_planet is True:
             print("The name typed doesn't match any of the known bodies. Please, try again.\n")
 
     bad_height = True
-    while bad_height == True:
+    while bad_height is True:
         input_height = float(input("What's the desired height, in meters, for the relay above ground? "))
         if input_height <= target.radius:
             print(f"""The desired height would put your relay orbit below the minimum orbit around {target.name}, leading to signal occlusion. Please, pick a new height (min. {target.radius + 10000}m).\n""")
